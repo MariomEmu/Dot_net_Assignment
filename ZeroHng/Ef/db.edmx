@@ -1,0 +1,366 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Collection Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RestaurantID" Type="int" Nullable="false" />
+          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="Status" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone Number" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Quantity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CollectionRequestID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Restaurant Employee">
+          <Key>
+            <PropertyRef Name="RestaurantEmployeeID" />
+          </Key>
+          <Property Name="Restaurant Id" Type="int" Nullable="false" />
+          <Property Name="Employee Id" Type="int" Nullable="false" />
+          <Property Name="RestaurantEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Collection Request_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Collection Request" Type="Self.Collection Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection Request">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection Request_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Collection Request" Type="Self.Collection Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection Request">
+              <PropertyRef Name="RestaurantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Collection Request">
+          <End Role="Collection Request" Type="Self.Collection Request" Multiplicity="1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collection Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="CollectionRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Restaurant Employee" Type="Self.Restaurant Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Restaurant Employee">
+              <PropertyRef Name="Employee Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant Employee_Restaurant Employee">
+          <End Role="Restaurant Employee" Type="Self.Restaurant Employee" Multiplicity="1" />
+          <End Role="Restaurant Employee1" Type="Self.Restaurant Employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant Employee">
+              <PropertyRef Name="RestaurantEmployeeID" />
+            </Principal>
+            <Dependent Role="Restaurant Employee1">
+              <PropertyRef Name="RestaurantEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Collection Request" EntityType="Self.Collection Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Restaurant Employee" EntityType="Self.Restaurant Employee" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Collection Request_Employee" Association="Self.FK_Collection Request_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Collection Request" EntitySet="Collection Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection Request_Restaurant" Association="Self.FK_Collection Request_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurant" />
+            <End Role="Collection Request" EntitySet="Collection Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Collection Request" Association="Self.FK_Food_Collection Request">
+            <End Role="Collection Request" EntitySet="Collection Request" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant Employee_Employee" Association="Self.FK_Restaurant Employee_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Restaurant Employee" EntitySet="Restaurant Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant Employee_Restaurant Employee" Association="Self.FK_Restaurant Employee_Restaurant Employee">
+            <End Role="Restaurant Employee" EntitySet="Restaurant Employee" />
+            <End Role="Restaurant Employee1" EntitySet="Restaurant Employee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Collection_Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RestaurantID" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Collection_Request_Employee" FromRole="Collection_Request" ToRole="Employee" />
+          <NavigationProperty Name="Restaurant" Relationship="Self.FK_Collection_Request_Restaurant" FromRole="Collection_Request" ToRole="Restaurant" />
+          <NavigationProperty Name="Foods" Relationship="Self.FK_Food_Collection_Request" FromRole="Collection_Request" ToRole="Food" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Collection_Request" Relationship="Self.FK_Collection_Request_Employee" FromRole="Employee" ToRole="Collection_Request" />
+          <NavigationProperty Name="Restaurant_Employee" Relationship="Self.FK_Restaurant_Employee_Employee" FromRole="Employee" ToRole="Restaurant_Employee" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Quantity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CollectionRequestID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Collection_Request" Relationship="Self.FK_Food_Collection_Request" FromRole="Food" ToRole="Collection_Request" />
+        </EntityType>
+        <EntityType Name="Restaurant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Collection_Request" Relationship="Self.FK_Collection_Request_Restaurant" FromRole="Restaurant" ToRole="Collection_Request" />
+        </EntityType>
+        <EntityType Name="Restaurant_Employee">
+          <Key>
+            <PropertyRef Name="RestaurantEmployeeID" />
+          </Key>
+          <Property Name="Restaurant_Id" Type="Int32" Nullable="false" />
+          <Property Name="Employee_Id" Type="Int32" Nullable="false" />
+          <Property Name="RestaurantEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Restaurant_Employee_Employee" FromRole="Restaurant_Employee" ToRole="Employee" />
+          <NavigationProperty Name="Restaurant_Employee1" Relationship="Self.FK_Restaurant_Employee_Restaurant_Employee" FromRole="Restaurant_Employee" ToRole="Restaurant_Employee1" />
+          <NavigationProperty Name="Restaurant_Employee2" Relationship="Self.FK_Restaurant_Employee_Restaurant_Employee" FromRole="Restaurant_Employee1" ToRole="Restaurant_Employee" />
+        </EntityType>
+        <Association Name="FK_Collection_Request_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Collection_Request" Type="Self.Collection_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection_Request">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Collection_Request_Restaurant">
+          <End Role="Restaurant" Type="Self.Restaurant" Multiplicity="1" />
+          <End Role="Collection_Request" Type="Self.Collection_Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Collection_Request">
+              <PropertyRef Name="RestaurantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Food_Collection_Request">
+          <End Role="Collection_Request" Type="Self.Collection_Request" Multiplicity="1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Collection_Request">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="CollectionRequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Employee_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Restaurant_Employee" Type="Self.Restaurant_Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Restaurant_Employee">
+              <PropertyRef Name="Employee_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Restaurant_Employee_Restaurant_Employee">
+          <End Role="Restaurant_Employee" Type="Self.Restaurant_Employee" Multiplicity="1" />
+          <End Role="Restaurant_Employee1" Type="Self.Restaurant_Employee" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Restaurant_Employee">
+              <PropertyRef Name="RestaurantEmployeeID" />
+            </Principal>
+            <Dependent Role="Restaurant_Employee1">
+              <PropertyRef Name="RestaurantEmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Zero_HungerEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Collection_Requests" EntityType="Self.Collection_Request" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Foods" EntityType="Self.Food" />
+          <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+          <EntitySet Name="Restaurant_Employees" EntityType="Self.Restaurant_Employee" />
+          <AssociationSet Name="FK_Collection_Request_Employee" Association="Self.FK_Collection_Request_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Collection_Request" EntitySet="Collection_Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Collection_Request_Restaurant" Association="Self.FK_Collection_Request_Restaurant">
+            <End Role="Restaurant" EntitySet="Restaurants" />
+            <End Role="Collection_Request" EntitySet="Collection_Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Food_Collection_Request" Association="Self.FK_Food_Collection_Request">
+            <End Role="Collection_Request" EntitySet="Collection_Requests" />
+            <End Role="Food" EntitySet="Foods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Employee_Employee" Association="Self.FK_Restaurant_Employee_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Restaurant_Employee" EntitySet="Restaurant_Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Restaurant_Employee_Restaurant_Employee" Association="Self.FK_Restaurant_Employee_Restaurant_Employee">
+            <End Role="Restaurant_Employee" EntitySet="Restaurant_Employees" />
+            <End Role="Restaurant_Employee1" EntitySet="Restaurant_Employees" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Zero_HungerEntities1">
+          <EntitySetMapping Name="Collection_Requests">
+            <EntityTypeMapping TypeName="Model.Collection_Request">
+              <MappingFragment StoreEntitySet="Collection Request">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RestaurantID" ColumnName="RestaurantID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone Number" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Foods">
+            <EntityTypeMapping TypeName="Model.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CollectionRequestID" ColumnName="CollectionRequestID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurants">
+            <EntityTypeMapping TypeName="Model.Restaurant">
+              <MappingFragment StoreEntitySet="Restaurant">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone Number" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Restaurant_Employees">
+            <EntityTypeMapping TypeName="Model.Restaurant_Employee">
+              <MappingFragment StoreEntitySet="Restaurant Employee">
+                <ScalarProperty Name="Restaurant_Id" ColumnName="Restaurant Id" />
+                <ScalarProperty Name="Employee_Id" ColumnName="Employee Id" />
+                <ScalarProperty Name="RestaurantEmployeeID" ColumnName="RestaurantEmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
