@@ -11,7 +11,9 @@ namespace ZeroHng.Ef
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +24,17 @@ namespace ZeroHng.Ef
         }
     
         public int Id { get; set; }
+        [DisplayName("Name")]
         public string Name { get; set; }
+
         public string Phone_Number { get; set; }
         public string Email { get; set; }
-    
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        [DisplayName("Confirm Password")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection_Request> Collection_Request { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

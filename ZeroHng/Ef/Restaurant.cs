@@ -25,6 +25,7 @@ namespace ZeroHng.Ef
         public string Address { get; set; }
         public string Phone_Number { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection_Request> Collection_Request { get; set; }

@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EmployeeRegisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Ef\Collection_Request.cs">
       <DependentUpon>db.tt</DependentUpon>
@@ -192,6 +193,7 @@
     <Content Include="Ef\db.edmx.diagram">
       <DependentUpon>db.edmx</DependentUpon>
     </Content>
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -217,6 +219,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\EmployeeRegis\Registration1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
