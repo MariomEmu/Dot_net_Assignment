@@ -1,10 +1,10 @@
-﻿@model ZeroHng.Ef.Employee
+﻿@model ZeroHng.EF.Employee
 
 @{
-    ViewBag.Title = "Employee Registration1";
+    ViewBag.Title = "Employee Registration";
 }
 
-<h2>Employee Registration1</h2>
+<h2>Employee Registration</h2>
 
 
 @using (Html.BeginForm("Registration1", "EmployeeRegis",FormMethod.Post))
@@ -47,16 +47,29 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
-        </div>
+        <label>Confirm Password</label>
+        <input class="form-control" type="password" name="Confirm_Password" value="" />
+        @if (ViewBag.MismatchPasswor != null)
+        {
+            <span class="text-danger">@ViewBag.MismatchPasswor</span>
+        }
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <lavel class="label-success">@ViewBag.SuccessMessage</lavel>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-2">
+            <lavel class="label-danger">@ViewBag.DuplicateMessage</lavel>
         </div>
     </div>
 </div>

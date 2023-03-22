@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZeroHng.Ef
+namespace ZeroHng.EF
 {
     using System;
     using System.Collections.Generic;

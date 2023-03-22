@@ -130,35 +130,38 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EmployeeRegisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Ef\Collection_Request.cs">
-      <DependentUpon>db.tt</DependentUpon>
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RestaurantRegController.cs" />
+    <Compile Include="EF\Collection_Request.cs">
+      <DependentUpon>ZeroContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ef\db.Context.cs">
+    <Compile Include="EF\DisplayNameAttribute.cs" />
+    <Compile Include="EF\Employee.cs">
+      <DependentUpon>ZeroContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Food.cs">
+      <DependentUpon>ZeroContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Restaurant.cs">
+      <DependentUpon>ZeroContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Restaurant_Employee.cs">
+      <DependentUpon>ZeroContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\ZeroContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db.Context.tt</DependentUpon>
+      <DependentUpon>ZeroContext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ef\db.cs">
+    <Compile Include="EF\ZeroContext.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db.tt</DependentUpon>
+      <DependentUpon>ZeroContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ef\db.Designer.cs">
+    <Compile Include="EF\ZeroContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>db.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Ef\Employee.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ef\Food.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ef\Restaurant.cs">
-      <DependentUpon>db.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ef\Restaurant_Employee.cs">
-      <DependentUpon>db.tt</DependentUpon>
+      <DependentUpon>ZeroContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -170,15 +173,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Ef\db.Context.tt">
+    <Content Include="EF\ZeroContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>db.edmx</DependentUpon>
-      <LastGenOutput>db.Context.cs</LastGenOutput>
+      <DependentUpon>ZeroContext.edmx</DependentUpon>
+      <LastGenOutput>ZeroContext.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Ef\db.tt">
+    <Content Include="EF\ZeroContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>db.edmx</DependentUpon>
-      <LastGenOutput>db.cs</LastGenOutput>
+      <DependentUpon>ZeroContext.edmx</DependentUpon>
+      <LastGenOutput>ZeroContext.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -186,14 +189,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Ef\db.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>db.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Ef\db.edmx.diagram">
-      <DependentUpon>db.edmx</DependentUpon>
-    </Content>
     <Content Include="libman.json" />
+    <EntityDeploy Include="EF\ZeroContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ZeroContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EF\ZeroContext.edmx.diagram">
+      <DependentUpon>ZeroContext.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -220,6 +223,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\EmployeeRegis\Registration1.cshtml" />
+    <Content Include="Views\Login\EmployeeLogin.cshtml" />
+    <Content Include="Views\RestaurantReg\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

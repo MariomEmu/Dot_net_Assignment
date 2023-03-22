@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ZeroHng.Ef;
+using ZeroHng.EF;
 
 namespace ZeroHng.Controllers
 {
@@ -19,23 +19,31 @@ namespace ZeroHng.Controllers
             return View(employee);
         }
         [HttpPost]
-        public ActionResult Registration1(Employee employee)
+        public ActionResult Registration1(Employee employee, FormCollection form)
         {
-             using( db data = new db())
+            if (employee.Password == form["Confirm_Password"])
             {
-                if(data.Employees.Any(x => x.Name==employee.Name))
+                using (var data = new Zero_HungerEntities2())
                 {
-                    ViewBag.DuplicateMessage = "Employee Name Already Exists.";
-                    return View("Registration1", employee);
+                    if (data.Employees.Any(x => x.Name == employee.Name))
+                    {
+                        ViewBag.DuplicateMessage = "Employee Name Already Exists.";
+                        return View("Registration1", employee);
+                    }
+                    else
+                    {
+                        data.Employees.Add(employee);
+                        data.SaveChanges();
+                    }
+                    // ModelState.Clear();
+                    ViewBag.SuccessMessage = "Save Successfully";
+                    return View("Registration1", new Employee());
                 }
-                else
-                {
-                    data.Employees.Add(employee);
-                    data.SaveChanges();
-                }
-               // ModelState.Clear();
-                ViewBag.SuccessMessage = "Save Successfully";
-                return View("Registration1", new Employee());
+            }
+            else
+            {
+                ViewBag.MismatchPasswor = "Password not matching";
+                return View(employee);
             }
         }
     }

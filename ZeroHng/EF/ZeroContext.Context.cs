@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZeroHng.Ef
+namespace ZeroHng.EF
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Zero_HungerEntities1 : DbContext
+    public partial class Zero_HungerEntities2 : DbContext
     {
-        public Zero_HungerEntities1()
-            : base("name=Zero_HungerEntities1")
+        public Zero_HungerEntities2()
+            : base("name=Zero_HungerEntities2")
         {
         }
     

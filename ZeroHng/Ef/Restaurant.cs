@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZeroHng.Ef
+namespace ZeroHng.EF
 {
     using System;
     using System.Collections.Generic;
@@ -21,12 +21,21 @@ namespace ZeroHng.Ef
         }
     
         public int Id { get; set; }
+        [DisplayName("Name")]
         public string Name { get; set; }
         public string Address { get; set; }
         public string Phone_Number { get; set; }
         public string Email { get; set; }
+
+       // [DataType(DataType.Password)]
+
         public string Password { get; set; }
-    
+
+        [DisplayName("Confirm Password")]
+        //[DataType(DataType.Password)]
+
+        public string ConfirmPassword { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Collection_Request> Collection_Request { get; set; }
     }
