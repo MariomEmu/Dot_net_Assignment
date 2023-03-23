@@ -14,11 +14,14 @@ namespace ZeroHng.EF
     
     public partial class Food
     {
+        internal readonly int FoodId;
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Quantity { get; set; }
         public int CollectionRequestID { get; set; }
     
         public virtual Collection_Request Collection_Request { get; set; }
+        public object FoodQuantity { get; internal set; }
     }
 }
